@@ -1,6 +1,6 @@
-# AI Chat Assistant UI
+# AI Restaurant
 
-Frontend application for an AI-powered chat assistant
+Frontend application for an AI Restaurant
 
 ---
 
