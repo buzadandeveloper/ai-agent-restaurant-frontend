@@ -4,14 +4,6 @@ Frontend application for an AI Restaurant
 
 ---
 
-## 📁 Project Structure
-
-See detailed documentation here:  
-- [Project structure](docs/project-structure.readme.md)
-- [Coding standards and conventions](docs/coding-standarts-and-conventions.readme.md)
-
----
-
 ### - Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -27,7 +19,7 @@ npm install -g pnpm
 
 Clone the repository:
 ```bash
-git clone https://github.com/jivygroup-md/ai-chat-assistant-ui.git
+git clone https://github.com/buzadandeveloper/ai-agent-restaurant-widget-frontend.git
 ```
 
 2. **Install dependencies:**
