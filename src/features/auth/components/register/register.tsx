@@ -21,8 +21,12 @@ export const Register = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="register-name">Name</Label>
-            <Input id="register-name" type="text" placeholder="John Doe" />
+            <Label htmlFor="register-first-name">First name</Label>
+            <Input id="register-fisrt-name" type="text" placeholder="John" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="register-last-name">Last name</Label>
+            <Input id="register-last-name" type="text" placeholder="Doe" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="register-email">Email</Label>
