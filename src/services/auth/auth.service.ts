@@ -1,4 +1,4 @@
-import { request } from "@/lib/requset";
+import { request } from "@/lib/request";
 import type { LoginProps, RegisterProps } from "@/services/auth/auth.types";
 
 class AuthService {
