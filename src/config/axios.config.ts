@@ -1,11 +1,11 @@
-import Axios from "axios";
+import $axios from "axios";
 import { requestErrorInterceptor, requestInterceptor } from "@/config/request-interceptor.config";
 import {
   responseErrorInterceptor,
   responseInterceptor
 } from "@/config/response-interceptor.config";
 
-const axios = Axios.create({
+const axios = $axios.create({
   baseURL: process.env.BASE_URL
 });
 
