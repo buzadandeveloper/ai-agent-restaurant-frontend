@@ -1,9 +1,7 @@
-import { AxiosError, InternalAxiosRequestConfig } from "axios";
+import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { showToast } from "@/lib/show-toast";
 
-const requestInterceptor = (
-  config: InternalAxiosRequestConfig
-): InternalAxiosRequestConfig => {
+const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   const token = localStorage.getItem("token");
 
   if (token) {

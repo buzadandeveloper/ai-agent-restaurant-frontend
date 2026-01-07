@@ -1,4 +1,4 @@
-import { AxiosResponse, AxiosError } from "axios";
+import type { AxiosError, AxiosResponse } from "axios";
 
 const responseInterceptor = (response: AxiosResponse): AxiosResponse => {
   return response;
