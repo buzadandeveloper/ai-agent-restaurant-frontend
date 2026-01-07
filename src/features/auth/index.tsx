@@ -1,5 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Register, Login } from "@/features/auth/components";
+import { Login, Register } from "@/features/auth/components";
 
 export const AuthPage = () => {
   return (
