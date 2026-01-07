@@ -1,5 +1,5 @@
 import { request } from "@/lib/requset";
-import { RegisterProps, LoginProps } from "@/services/auth/auth.types";
+import type { LoginProps, RegisterProps } from "@/services/auth/auth.types";
 
 class AuthService {
   register = (payload: RegisterProps) => request.post("/api/auth/register", payload);
