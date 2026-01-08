@@ -1,5 +1,5 @@
-import { PublicLayout } from "@/layouts/public-layout";
 import { AuthPage } from "@/features/auth";
+import { PublicLayout } from "@/layouts/public-layout";
 
 export const publicRoutes = [
   {
