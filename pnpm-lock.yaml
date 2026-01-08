@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.70.0(react@19.2.3))
       '@lukemorales/query-key-factory':
         specifier: ^1.3.4
         version: 1.3.4(@tanstack/query-core@5.90.16)(@tanstack/react-query@5.90.16(react@19.2.3))
@@ -32,6 +35,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.90.16
         version: 5.90.16(react@19.2.3)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.91.2
+        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
       axios:
         specifier: ^1.13.2
         version: 1.13.2
@@ -50,6 +56,9 @@ importers:
       react-dom:
         specifier: ^19.2.0
         version: 19.2.3(react@19.2.3)
+      react-hook-form:
+        specifier: ^7.70.0
+        version: 7.70.0(react@19.2.3)
       react-router-dom:
         specifier: ^7.10.1
         version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -62,6 +71,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
+      zod:
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.9
@@ -469,6 +481,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@hookform/resolvers@5.2.2':
+    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
+    peerDependencies:
+      react-hook-form: ^7.55.0
+
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
@@ -851,6 +868,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
+
   '@tailwindcss/node@4.1.18':
     resolution: {integrity: sha512-DoR7U1P7iYhw16qJ49fgXUlry1t4CpXeErJHnQ44JgTSKMaZUdf17cfn5mHchfJ4KRBZRFA/Coo+MUF5+gOaCQ==}
 
@@ -943,6 +963,15 @@ packages:
 
   '@tanstack/query-core@5.90.16':
     resolution: {integrity: sha512-MvtWckSVufs/ja463/K4PyJeqT+HMlJWtw6PrCpywznd2NSgO3m4KwO9RqbFqGg6iDE8vVMFWMeQI4Io3eEYww==}
+
+  '@tanstack/query-devtools@5.92.0':
+    resolution: {integrity: sha512-N8D27KH1vEpVacvZgJL27xC6yPFUy0Zkezn5gnB3L3gRCxlDeSuiya7fKge8Y91uMTnC8aSxBQhcK6ocY7alpQ==}
+
+  '@tanstack/react-query-devtools@5.91.2':
+    resolution: {integrity: sha512-ZJ1503ay5fFeEYFUdo7LMNFzZryi6B0Cacrgr2h1JRkvikK1khgIq6Nq2EcblqEdIlgB/r7XDW8f8DQ89RuUgg==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.90.14
+      react: ^18 || ^19
 
   '@tanstack/react-query@5.90.16':
     resolution: {integrity: sha512-bpMGOmV4OPmif7TNMteU/Ehf/hoC0Kf98PDc0F4BZkFrEapRMEqI/V6YS0lyzwSV6PQpY1y4xxArUIfBW5LVxQ==}
@@ -1828,6 +1857,12 @@ packages:
     peerDependencies:
       react: ^19.2.3
 
+  react-hook-form@7.70.0:
+    resolution: {integrity: sha512-COOMajS4FI3Wuwrs3GPpi/Jeef/5W1DRR84Yl5/ShlT3dKVFUfoGiEZ/QE6Uw8P4T2/CLJdcTVYKvWBMQTEpvw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
@@ -2119,6 +2154,9 @@ packages:
   yocto-queue@1.2.2:
     resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
+
+  zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
 
 snapshots:
 
@@ -2457,6 +2495,11 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
+  '@hookform/resolvers@5.2.2(react-hook-form@7.70.0(react@19.2.3))':
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.70.0(react@19.2.3)
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -2753,6 +2796,8 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.53.3':
     optional: true
 
+  '@standard-schema/utils@0.3.0': {}
+
   '@tailwindcss/node@4.1.18':
     dependencies:
       '@jridgewell/remapping': 2.3.5
@@ -2822,6 +2867,14 @@ snapshots:
       vite: 7.2.7(@types/node@24.10.3)(jiti@2.6.1)(lightningcss@1.30.2)
 
   '@tanstack/query-core@5.90.16': {}
+
+  '@tanstack/query-devtools@5.92.0': {}
+
+  '@tanstack/react-query-devtools@5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@tanstack/query-devtools': 5.92.0
+      '@tanstack/react-query': 5.90.16(react@19.2.3)
+      react: 19.2.3
 
   '@tanstack/react-query@5.90.16(react@19.2.3)':
     dependencies:
@@ -3682,6 +3735,10 @@ snapshots:
       react: 19.2.3
       scheduler: 0.27.0
 
+  react-hook-form@7.70.0(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+
   react-refresh@0.18.0: {}
 
   react-router-dom@7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
@@ -3915,3 +3972,5 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@1.2.2: {}
+
+  zod@4.3.5: {}
