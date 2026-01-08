@@ -6,7 +6,7 @@ import {
 } from "@/config/response-interceptor.config";
 
 const axios = $axios.create({
-  baseURL: process.env.BASE_URL
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 axios.interceptors.request.use(requestInterceptor, requestErrorInterceptor);
