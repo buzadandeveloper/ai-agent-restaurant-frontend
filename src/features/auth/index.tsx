@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Login, Register } from "@/features/auth/components";
@@ -8,7 +8,6 @@ import type { ToastData } from "@/types/toast.types";
 export const AuthPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState("register");
-  const [toastShown, setToastShown] = useState(false);
 
   useEffect(() => {
     const tabParam = searchParams.get("tab");
@@ -22,11 +21,14 @@ export const AuthPage = () => {
     const status = searchParams.get("status");
 
     if (status && afterVerifyAccStatus[status]) {
-      showToast(afterVerifyAccStatus[status]);
       setSearchParams({ tab: status === "verified" ? "login" : "register" });
-      setToastShown(true);
+      const id = setTimeout(() => {
+        showToast(afterVerifyAccStatus[status]);
+      }, 0);
+
+      return () => clearTimeout(id);
     }
-  }, [searchParams, toastShown]);
+  }, [searchParams, setSearchParams]);
 
   const onHandleTabChange = (value: string) => {
     setTab(value);
