@@ -1,4 +1,4 @@
-import { useEffect, useState, use } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Login, Register } from "@/features/auth/components";

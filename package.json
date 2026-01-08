@@ -8,7 +8,7 @@
     "dev:ts": "tsc --noEmit --watch",
     "dev": "concurrently -k -n VITE,TSC -c blue,red \"pnpm dev:vite\" \"pnpm dev:ts\"",
     "build": "tsc -b && vite build",
-    "lint": "biome check --write --unsafe",
+    "lint": "biome check --write",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
