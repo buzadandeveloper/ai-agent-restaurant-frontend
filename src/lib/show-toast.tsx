@@ -1,12 +1,7 @@
 import { toast } from "sonner";
 import { Toast } from "@/components/common/toast/toast";
+import type { ToastData } from "@/types/toast.types";
 
-interface Props {
-  title: string;
-  description: string;
-  variant: "default" | "destructive";
-}
-
-export function showToast({ title, description, variant }: Props) {
+export function showToast({ title, description, variant }: ToastData) {
   toast.custom(() => <Toast title={title} description={description} variant={variant} />);
 }

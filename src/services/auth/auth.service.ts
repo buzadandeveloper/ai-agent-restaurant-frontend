@@ -1,10 +1,11 @@
 import { request } from "@/lib/request";
-import type { LoginProps, RegisterProps } from "@/services/auth/auth.types";
+import type { LoginData, RegisterData } from "@/services/auth/auth.types";
 
 class AuthService {
-  register = (payload: RegisterProps) => request.post("/api/auth/register", payload);
+  register = (payload: RegisterData) => request.post("/api/auth/register", payload);
 
-  login = (payload: LoginProps) => request.post("/api/auth/login", payload);
+  login = (payload: LoginData): Promise<{ accessToken: string }> =>
+    request.post("/api/auth/login", payload);
 }
 
 export const authService = new AuthService();

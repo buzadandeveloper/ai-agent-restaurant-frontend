@@ -1,13 +1,8 @@
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import type { ToastData as ToastProps } from "@/types/toast.types";
 
-interface Props {
-  title: string;
-  description: string;
-  variant: "default" | "destructive";
-}
-
-export const Toast = ({ title, description, variant }: Props) => {
+export const Toast = ({ title, description, variant }: ToastProps) => {
   return (
     <Alert variant={variant} className="w-100">
       <AlertCircle size={"1.25em"} className="mt-1.5" />
