@@ -1,6 +1,6 @@
 import { ProtectedRoutes } from "@/app/routes/protected-routes";
-import { PrivateLayout } from "@/layouts/private-layout";
 import { UserPage } from "@/features/user";
+import { PrivateLayout } from "@/layouts/private-layout";
 
 export const privateRoutes = [
   {

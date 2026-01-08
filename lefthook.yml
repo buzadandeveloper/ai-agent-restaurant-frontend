@@ -1,15 +1,15 @@
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     biome:
       run: pnpm lint {staged_files}
       glob: "src/**/*.{ts,tsx,js,json}"
+      stage_fixed: true
     tsc:
       run: pnpm typecheck
       glob: "src/**/*.{ts,tsx}"
 
 commit-msg:
-  parallel: true
   commands:
     commitlint:
       run: pnpm commitlint --edit $1
