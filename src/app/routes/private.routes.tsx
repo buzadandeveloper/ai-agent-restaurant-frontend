@@ -1,5 +1,5 @@
+import { MenuItems } from "@/app/routes/menu-items";
 import { ProtectedRoutes } from "@/app/routes/protected-routes";
-import { UserPage } from "@/features/user";
 import { PrivateLayout } from "@/layouts/private-layout";
 
 export const privateRoutes = [
@@ -8,12 +8,7 @@ export const privateRoutes = [
     children: [
       {
         element: <PrivateLayout />,
-        children: [
-          {
-            path: "user",
-            element: <UserPage />
-          }
-        ]
+        children: MenuItems
       }
     ]
   }
