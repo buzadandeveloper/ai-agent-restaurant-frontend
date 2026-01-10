@@ -1,3 +1,6 @@
+import { useGetUserProfile } from "@/features/settings/hooks/use-get-user-profile";
+
 export const SettingsPage = () => {
-  return <div>hello world</div>;
+  const { data: userProfile } = useGetUserProfile();
+  return <div>{JSON.stringify(userProfile)}</div>;
 };

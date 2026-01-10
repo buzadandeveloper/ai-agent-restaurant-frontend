@@ -6,7 +6,19 @@ const responseInterceptor = (response: AxiosResponse): AxiosResponse => {
 };
 
 const responseErrorInterceptor = async (error: AxiosError) => {
-  showToast({ title: "Error", description: "Something went wrong.", variant: "destructive" });
+  if (error.response?.status === 401 && !window.location.href.includes("/authenticate")) {
+    localStorage.removeItem("token");
+    window.location.href = "/authenticate?tab=login";
+  }
+
+  if (error.response?.data) {
+    const errorData = error.response.data as { message?: string };
+    showToast({
+      title: "Error",
+      description: errorData.message || "Something went wrong",
+      variant: "destructive"
+    });
+  }
 
   return Promise.reject(error);
 };

@@ -11,7 +11,7 @@ export const useLogin = () => {
     mutationFn: (data: LoginData) => authService.login(data),
     onSuccess: (response) => {
       localStorage.setItem("token", response.accessToken);
-      navigate("/user");
+      navigate("/dashboard");
       showToast({ title: "Success", description: "Login successful!", variant: "default" });
     }
   });
