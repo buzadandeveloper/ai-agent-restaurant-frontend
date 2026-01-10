@@ -11,7 +11,7 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRegister } from "@/features/auth/hooks/use-register";
+import { useRegister } from "@/features/auth/hooks";
 import { registerSchema } from "@/features/auth/schemas/auth.schema";
 import type { RegisterData } from "@/services/auth/auth.types";
 

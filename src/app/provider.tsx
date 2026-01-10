@@ -1,11 +1,17 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const AppProvider = ({ children }: Props) => {
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      {children}
+    </QueryClientProvider>
+  );
 };
 
 const queryClient = new QueryClient({
@@ -14,7 +20,8 @@ const queryClient = new QueryClient({
       retry: false
     },
     queries: {
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
+      retry: false
     }
   }
 });

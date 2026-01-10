@@ -7,7 +7,7 @@ function App() {
   return (
     <AppProvider>
       <RouterProvider router={router} />
-      <Toaster position={"top-right"} expand visibleToasts={1} />
+      <Toaster position="top-right" expand visibleToasts={1} />
     </AppProvider>
   );
 }

@@ -11,7 +11,7 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useLogin } from "@/features/auth/hooks/use-login";
+import { useLogin } from "@/features/auth/hooks";
 import { loginSchema } from "@/features/auth/schemas/auth.schema";
 import type { LoginData } from "@/services/auth/auth.types";
 
