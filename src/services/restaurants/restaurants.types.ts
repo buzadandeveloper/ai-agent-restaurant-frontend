@@ -11,5 +11,5 @@ export interface RestaurantData {
   ownerId?: number;
   createdAt?: string;
   updatedAt?: string;
-  menuCsv: File;
+  menuCsv: File | null | undefined;
 }

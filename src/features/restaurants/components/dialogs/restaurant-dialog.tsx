@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreateRestaurant, useUpdateRestaurant } from "@/features/restaurants/hooks";
-import { restaurantDialogSchema } from "@/features/restaurants/schemas/restaurant-dialog.schemas";
+import { getRestaurantDialogSchema } from "@/features/restaurants/schemas/restaurant-dialog.schemas";
 import type { RestaurantDialogData } from "@/features/restaurants/types/index.types";
 import type { RestaurantData } from "@/services/restaurants/restaurants.types";
 
@@ -45,16 +45,18 @@ const defaultValues = {
 };
 
 export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDialogProps) => {
+  const modalData = isDialogOpen.data;
+  const isCreateMode = isDialogOpen.mode === "create";
+  const isEditMode = isDialogOpen.mode === "edit";
+
   const form = useForm<RestaurantData>({
-    resolver: zodResolver(restaurantDialogSchema),
+    resolver: zodResolver(getRestaurantDialogSchema(isEditMode)),
     defaultValues
   });
 
   const { mutate: createRestaurant, isPending: createRestaurantPending } = useCreateRestaurant();
   const { mutate: updateRestaurant, isPending: updateRestaurantPending } = useUpdateRestaurant();
 
-  const modalData = isDialogOpen.data;
-  const isCreateMode = isDialogOpen.mode === "create";
   const inPending = createRestaurantPending || updateRestaurantPending;
 
   useEffect(() => {
@@ -78,7 +80,10 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
     formData.append("numberOfTables", data.numberOfTables.toString());
     formData.append("phone", data.phone);
     formData.append("address", data.address);
-    formData.append("menuCsv", data.menuCsv);
+
+    if (data.menuCsv) {
+      formData.append("menuCsv", data.menuCsv);
+    }
 
     if (isCreateMode) {
       createRestaurant(formData, {
@@ -266,7 +271,14 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
                     name="menuCsv"
                     render={({ field: { onChange, value, ...field } }) => (
                       <FormItem className="flex-1">
-                        <FormLabel>Menu file</FormLabel>
+                        <FormLabel>
+                          {isCreateMode ? "Upload menu" : "Update menu"}{" "}
+                          {isEditMode && (
+                            <span className="text-muted-foreground text-sm font-normal">
+                              (optional)
+                            </span>
+                          )}
+                        </FormLabel>
                         <FormControl>
                           <Input
                             type={"file"}
