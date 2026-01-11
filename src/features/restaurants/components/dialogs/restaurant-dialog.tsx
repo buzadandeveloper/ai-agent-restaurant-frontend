@@ -266,32 +266,27 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
                       )}
                     />
                   </div>
-                  <FormField
-                    control={form.control}
-                    name="menuCsv"
-                    render={({ field: { onChange, value, ...field } }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>
-                          {isCreateMode ? "Upload menu" : "Update menu"}{" "}
-                          {isEditMode && (
-                            <span className="text-muted-foreground text-sm font-normal">
-                              (optional)
-                            </span>
-                          )}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type={"file"}
-                            accept=".csv"
-                            aria-invalid={!!form.formState.errors.menuCsv}
-                            onChange={(e) => onChange(e.target.files?.[0] || null)}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  {isCreateMode ? (
+                    <FormField
+                      control={form.control}
+                      name="menuCsv"
+                      render={({ field: { onChange, value, ...field } }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Menu CSV</FormLabel>
+                          <FormControl>
+                            <Input
+                              type={"file"}
+                              accept=".csv"
+                              aria-invalid={!!form.formState.errors.menuCsv}
+                              onChange={(e) => onChange(e.target.files?.[0] || null)}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  ) : null}
                   <DialogFooter>
                     <Button
                       variant="outline"

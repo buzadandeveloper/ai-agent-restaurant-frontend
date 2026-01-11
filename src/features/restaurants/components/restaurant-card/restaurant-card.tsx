@@ -1,5 +1,6 @@
-import { Check, Copy, Edit } from "lucide-react";
+import { Check, Copy, Edit, SquareArrowOutUpRight } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,10 +11,17 @@ import type { RestaurantData } from "@/services/restaurants/restaurants.types";
 
 interface RestaurantProps {
   restaurant: RestaurantData;
-  setIsDialogOpen: Dispatch<SetStateAction<RestaurantDialogData>>;
+  setIsDialogOpen?: Dispatch<SetStateAction<RestaurantDialogData>>;
+  withActionZone?: boolean;
 }
 
-export const RestaurantCard = ({ restaurant, setIsDialogOpen }: RestaurantProps) => {
+export const RestaurantCard = ({
+  restaurant,
+  setIsDialogOpen = () => {},
+  withActionZone = true
+}: RestaurantProps) => {
+  const navigate = useNavigate();
+
   const [copiedKey, setCopiedKey] = useState<number | null>(null);
 
   const copyToClipboard = (configKey: string, id: number) => {
@@ -22,38 +30,59 @@ export const RestaurantCard = ({ restaurant, setIsDialogOpen }: RestaurantProps)
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
+  const handleNavigateToRestaurantDetails = () => {
+    navigate(`restaurant?id=${restaurant.id}`);
+  };
+
   return (
     <Card key={restaurant.id}>
       <CardHeader>
         <div className="flex justify-between items-start">
           <div>
-            <CardTitle className="text-xl">{restaurant.name}</CardTitle>
+            <CardTitle className="text-xl">
+              {withActionZone ? (
+                <Button
+                  variant="link"
+                  onClick={handleNavigateToRestaurantDetails}
+                  className="!p-0 hover:opacity-80 text-xl"
+                >
+                  {restaurant.name}
+                  <SquareArrowOutUpRight width={16} height={16} />
+                </Button>
+              ) : (
+                restaurant.name
+              )}
+            </CardTitle>
             <CardDescription className="mt-1">{restaurant.address}</CardDescription>
           </div>
-          <div className="flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsDialogOpen({ mode: "edit", data: restaurant })}
-                >
-                  <Edit className="h-3 w-3" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Edit</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DeleteDialog restaurantId={restaurant.id!} />
-              </TooltipTrigger>
-              <TooltipContent>Delete</TooltipContent>
-            </Tooltip>
-          </div>
+          {withActionZone ? (
+            <div className="flex gap-2">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsDialogOpen({ mode: "edit", data: restaurant })}
+                  >
+                    <Edit className="h-3 w-3" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Edit</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DeleteDialog restaurantId={restaurant.id!} />
+                </TooltipTrigger>
+                <TooltipContent>Delete</TooltipContent>
+              </Tooltip>
+            </div>
+          ) : null}
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <p className="text-sm text-muted-foreground line-clamp-2">{restaurant.description}</p>
+        <p className={`text-sm text-muted-foreground ${withActionZone ? "line-clamp-2" : ""}`}>
+          {restaurant.description}
+        </p>
 
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div>
