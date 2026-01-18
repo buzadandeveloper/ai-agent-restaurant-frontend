@@ -1,6 +1,6 @@
+import { Home, MessageSquare, Settings, ShoppingCart, Store } from "lucide-react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MenuItems } from "@/app/routes";
 import { Button } from "@/components/ui/button";
 
 interface SidebarProps {
@@ -46,3 +46,11 @@ export const Sidebar = ({ sidebarOpen }: SidebarProps) => {
     </aside>
   );
 };
+
+const MenuItems = [
+  { path: "/dashboard", label: "Dashboard", icon: Home },
+  { path: "/restaurants", label: "Restaurants", icon: Store },
+  { path: "/orders", label: "Orders", icon: ShoppingCart },
+  { path: "/ai-chat", label: "AI Chat", icon: MessageSquare },
+  { path: "/settings", label: "Settings", icon: Settings }
+];
