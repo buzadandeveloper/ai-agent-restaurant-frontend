@@ -1,5 +1,6 @@
-import { MenuItems } from "@/app/routes/menu-items";
-import { ProtectedRoutes } from "@/app/routes/protected-routes";
+import { ProtectedRoutes } from "@/app/routes/protected.routes";
+import { RouteItems } from "@/app/routes/route-items";
+import { NotFound } from "@/components/common/404/not-found";
 import { PrivateLayout } from "@/layouts/private-layout";
 
 export const privateRoutes = [
@@ -8,7 +9,8 @@ export const privateRoutes = [
     children: [
       {
         element: <PrivateLayout />,
-        children: MenuItems
+        children: RouteItems.private,
+        errorElement: <NotFound />
       }
     ]
   }

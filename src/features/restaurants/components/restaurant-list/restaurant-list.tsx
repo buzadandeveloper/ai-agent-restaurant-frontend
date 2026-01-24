@@ -8,7 +8,7 @@ interface RestaurantsProps {
   setIsDialogOpen: Dispatch<SetStateAction<RestaurantDialogData>>;
 }
 
-export const Restaurants = ({ setIsDialogOpen }: RestaurantsProps) => {
+export const RestaurantList = ({ setIsDialogOpen }: RestaurantsProps) => {
   const { data: restaurants, isLoading } = useGetRestaurants();
 
   if (isLoading) {

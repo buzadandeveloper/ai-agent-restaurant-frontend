@@ -20,7 +20,7 @@ export const useCreateRestaurant = () => {
     mutationFn: (data: FormData) => restaurantsService.createRestaurant(data),
     onSuccess: (data) => {
       queryClient.setQueryData(
-        ["restaurants", "getRestaurants", "myRestaurants"],
+        restaurantsQueryKeys.getRestaurants().queryKey,
         (oldData: RestaurantData[]) => {
           return [...oldData, data.restaurant];
         }
@@ -37,7 +37,7 @@ export const useUpdateRestaurant = () => {
       restaurantsService.updateRestaurant(id, data),
     onSuccess: (data) => {
       queryClient.setQueryData(
-        ["restaurants", "getRestaurants", "myRestaurants"],
+        restaurantsQueryKeys.getRestaurants().queryKey,
         (oldData: RestaurantData[]) =>
           oldData.map((restaurant) =>
             restaurant.id === data.restaurant.id ? data.restaurant : restaurant
@@ -54,9 +54,43 @@ export const useDeleteRestaurant = () => {
     mutationFn: (id: number) => restaurantsService.deleteRestaurant(id),
     onSuccess: (data) => {
       queryClient.setQueryData(
-        ["restaurants", "getRestaurants", "myRestaurants"],
+        restaurantsQueryKeys.getRestaurants().queryKey,
         (oldData: RestaurantData[]) =>
           oldData.filter((restaurant) => restaurant.id !== data.restaurantId)
+      );
+    }
+  });
+};
+
+export const useGetRestaurantMenu = (id: number) => {
+  return useQuery(restaurantsQueryKeys.getRestaurantMenu(id));
+};
+
+export const useUploadRestaurantMenu = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: FormData }) =>
+      restaurantsService.uploadRestaurantMenu(id, data),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: restaurantsQueryKeys.getRestaurantMenu(variables.id).queryKey
+      });
+    }
+  });
+};
+
+export const useDeleteRestaurantMenu = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) => restaurantsService.deleteRestaurantMenu(id),
+    onSuccess: (_, restaurantId) => {
+      queryClient.setQueryData(
+        restaurantsQueryKeys.getRestaurantMenu(restaurantId).queryKey,
+        () => {
+          return null;
+        }
       );
     }
   });
