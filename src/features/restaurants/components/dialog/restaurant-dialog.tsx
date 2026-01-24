@@ -33,17 +33,6 @@ interface RestaurantDialogProps {
   setIsDialogOpen: Dispatch<SetStateAction<RestaurantDialogData>>;
 }
 
-const defaultValues = {
-  name: "",
-  description: "",
-  founder: "",
-  administrator: "",
-  numberOfTables: 1,
-  phone: "",
-  address: "",
-  menuCsv: undefined
-};
-
 export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDialogProps) => {
   const modalData = isDialogOpen.data;
   const isCreateMode = isDialogOpen.mode === "create";
@@ -308,4 +297,15 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
       </div>
     </div>
   );
+};
+
+const defaultValues = {
+  name: "",
+  description: "",
+  founder: "",
+  administrator: "",
+  numberOfTables: 1,
+  phone: "",
+  address: "",
+  menuCsv: undefined
 };

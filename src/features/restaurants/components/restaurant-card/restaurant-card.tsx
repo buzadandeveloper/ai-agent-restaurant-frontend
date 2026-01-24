@@ -1,11 +1,12 @@
 import { Check, Copy, Edit, SquareArrowOutUpRight } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DeleteDialog } from "@/components/common/delete-dialog/delete-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { DeleteDialog } from "@/features/restaurants/components/dialogs/delete-dialog";
+import { useDeleteRestaurant } from "@/features/restaurants/hooks";
 import type { RestaurantDialogData } from "@/features/restaurants/types/index.types";
 import type { RestaurantData } from "@/services/restaurants/restaurants.types";
 
@@ -21,7 +22,9 @@ export const RestaurantCard = ({
   withActionZone = true
 }: RestaurantProps) => {
   const navigate = useNavigate();
+  const { mutate: deleteRestaurant, isPending } = useDeleteRestaurant();
 
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [copiedKey, setCopiedKey] = useState<number | null>(null);
 
   const copyToClipboard = (configKey: string, id: number) => {
@@ -32,6 +35,14 @@ export const RestaurantCard = ({
 
   const handleNavigateToRestaurantDetails = () => {
     navigate(`restaurant?id=${restaurant.id}`);
+  };
+
+  const handleDelete = () => {
+    deleteRestaurant(restaurant.id!, {
+      onSuccess: () => {
+        setIsDeleteDialogOpen(false);
+      }
+    });
   };
 
   return (
@@ -71,7 +82,15 @@ export const RestaurantCard = ({
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <DeleteDialog restaurantId={restaurant.id!} />
+                  <DeleteDialog
+                    isOpen={isDeleteDialogOpen}
+                    setIsOpen={setIsDeleteDialogOpen}
+                    title="Are you sure you want to delete restaurant?"
+                    description="This action cannot be undone. This will permanently delete the restaurant and all of its
+            data."
+                    handleDelete={handleDelete}
+                    isPending={isPending}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>Delete</TooltipContent>
               </Tooltip>
