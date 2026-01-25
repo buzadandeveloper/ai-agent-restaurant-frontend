@@ -1,16 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { FormFieldWithTypes } from "@/components/common/form/form-field-with-types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { useRegister } from "@/features/auth/hooks";
 import { registerSchema } from "@/features/auth/schemas/auth.schema";
 import type { RegisterData } from "@/services/auth/auth.types";
@@ -44,75 +37,38 @@ export const Register = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form id="register-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
+          <form id="register-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormFieldWithTypes
+              form={form}
+              type="text"
               name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>First name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="John"
-                      aria-invalid={!!form.formState.errors.firstName}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="First name"
+              placeholder="John"
+              ariaInvalid={!!form.formState.errors.firstName}
             />
-            <FormField
-              control={form.control}
+            <FormFieldWithTypes
+              form={form}
+              type="text"
               name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Last name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Doe"
-                      aria-invalid={!!form.formState.errors.lastName}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Last name"
+              placeholder="Doe"
+              ariaInvalid={!!form.formState.errors.lastName}
             />
-            <FormField
-              control={form.control}
+            <FormFieldWithTypes
+              form={form}
+              type="email"
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="m@example.com"
-                      aria-invalid={!!form.formState.errors.email}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Email"
+              placeholder="m@example.com"
+              ariaInvalid={!!form.formState.errors.email}
             />
-            <FormField
-              control={form.control}
+            <FormFieldWithTypes
+              form={form}
+              type="password"
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      aria-invalid={!!form.formState.errors.password}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Password"
+              placeholder="********"
+              ariaInvalid={!!form.formState.errors.password}
             />
             <Button className="w-full mt-2" type="submit" disabled={isPending}>
               Create account

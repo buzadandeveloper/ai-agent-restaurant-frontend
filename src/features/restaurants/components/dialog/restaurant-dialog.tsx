@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { FormFieldWithTypes } from "@/components/common/form/form-field-with-types";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,16 +14,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Form } from "@/components/ui/form";
 import { useCreateRestaurant, useUpdateRestaurant } from "@/features/restaurants/hooks";
 import { getRestaurantDialogSchema } from "@/features/restaurants/schemas/restaurant-dialog.schemas";
 import type { RestaurantDialogData } from "@/features/restaurants/types/index.types";
@@ -124,156 +116,78 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
               <form id="restaurant-dialog-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="space-y-4 flex flex-col gap-2">
                   <div className="flex w-full gap-4">
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="text"
                       name="name"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Restaurant name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Pizza Palace"
-                              aria-invalid={!!form.formState.errors.name}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Restaurant name"
+                      placeholder="Pizza Palace"
+                      ariaInvalid={!!form.formState.errors.name}
                     />
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="number"
                       name="numberOfTables"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Number of tables</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="number"
-                              placeholder="15"
-                              min={1}
-                              max={25}
-                              aria-invalid={!!form.formState.errors.numberOfTables}
-                              {...field}
-                              onChange={(e) => field.onChange(parseInt(e.target.value, 10) || 0)}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Number of tables"
+                      placeholder="15"
+                      minLength={1}
+                      maxLength={25}
+                      ariaInvalid={!!form.formState.errors.numberOfTables}
                     />
                   </div>
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithTypes
+                    form={form}
+                    type="textarea"
                     name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="A cozy Italian restaurant known for its authentic wood-fired pizzas..."
-                            maxLength={500}
-                            aria-invalid={!!form.formState.errors.description}
-                            className="resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Description"
+                    placeholder="A cozy Italian restaurant known for its authentic wood-fired pizzas..."
+                    maxLength={500}
+                    ariaInvalid={!!form.formState.errors.description}
                   />
                   <div className="flex w-full gap-4">
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="text"
                       name="founder"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Founder</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="John Doe"
-                              aria-invalid={!!form.formState.errors.founder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Founder"
+                      placeholder="John Doe"
+                      ariaInvalid={!!form.formState.errors.founder}
                     />
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="text"
                       name="administrator"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Administrator</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Jane Smith"
-                              aria-invalid={!!form.formState.errors.administrator}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Administrator"
+                      placeholder="Jane Smith"
+                      ariaInvalid={!!form.formState.errors.administrator}
                     />
                   </div>
                   <div className="flex w-full gap-4">
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="tel"
                       name="phone"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Phone Number</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="tel"
-                              placeholder="+1 (555) 123-4567"
-                              aria-invalid={!!form.formState.errors.phone}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Phone number"
+                      placeholder="+1 (555) 123-4567"
+                      ariaInvalid={!!form.formState.errors.phone}
                     />
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="text"
                       name="address"
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="123 Main Street, City, Country"
-                              aria-invalid={!!form.formState.errors.address}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Address"
+                      placeholder="123 Main Street, City, Country"
+                      ariaInvalid={!!form.formState.errors.address}
                     />
                   </div>
                   {isCreateMode ? (
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithTypes
+                      form={form}
+                      type="file"
                       name="menuCsv"
-                      render={({ field: { onChange, value, ...field } }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Menu CSV</FormLabel>
-                          <FormControl>
-                            <Input
-                              type={"file"}
-                              accept=".csv"
-                              aria-invalid={!!form.formState.errors.menuCsv}
-                              onChange={(e) => onChange(e.target.files?.[0] || null)}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Menu CSV"
+                      ariaInvalid={!!form.formState.errors.menuCsv}
+                      accept=".csv"
                     />
                   ) : null}
                   <DialogFooter>
