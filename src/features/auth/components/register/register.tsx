@@ -29,7 +29,11 @@ export const Register = () => {
   const { mutate: register, isPending } = useRegister();
 
   const onSubmit = (data: RegisterData) => {
-    register(data);
+    register(data, {
+      onSuccess: () => {
+        form.reset();
+      }
+    });
   };
 
   return (
