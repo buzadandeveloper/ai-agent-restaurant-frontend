@@ -4,7 +4,11 @@ import { useSearchParams } from "react-router-dom";
 import { DeleteDialog } from "@/components/common/delete-dialog/delete-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useDeleteRestaurantMenu, useUploadRestaurantMenu } from "@/features/restaurants/hooks";
+import {
+  useDeleteRestaurantMenu,
+  useGetRestaurantMenu,
+  useUploadRestaurantMenu
+} from "@/features/restaurants/hooks";
 
 export const ManageMenu = () => {
   const [searchParams] = useSearchParams();
@@ -14,6 +18,7 @@ export const ManageMenu = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const { data: menu } = useGetRestaurantMenu(restaurantId);
   const { mutate: deleteMenu, isPending: deleteMenuPending } = useDeleteRestaurantMenu();
   const { mutate: uploadMenu, isPending: uploadMenuPending } = useUploadRestaurantMenu();
 
@@ -54,6 +59,7 @@ export const ManageMenu = () => {
         buttonTitle="Delete menu"
         handleDelete={handleDeleteMenu}
         isPending={deleteMenuPending}
+        disabled={!menu}
       />
     </div>
   );

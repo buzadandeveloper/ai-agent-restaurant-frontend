@@ -23,6 +23,7 @@ interface DeleteDialogProps {
   buttonTooltip?: string;
   handleDelete?: () => void;
   isPending?: boolean;
+  disabled?: boolean;
 }
 
 export const DeleteDialog = ({
@@ -33,14 +34,20 @@ export const DeleteDialog = ({
   buttonTitle,
   buttonTooltip,
   handleDelete,
-  isPending
+  isPending,
+  disabled
 }: DeleteDialogProps) => {
   return (
     <AlertDialog open={isOpen}>
       <AlertDialogTrigger asChild>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="destructive" size="sm" onClick={() => setIsOpen(true)}>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={() => setIsOpen(true)}
+              disabled={disabled}
+            >
               <Trash2 className="h-3 w-3" /> {buttonTitle || ""}
             </Button>
           </TooltipTrigger>
