@@ -1,5 +1,5 @@
-import { ManageMenu } from "@/features/restaurants/components/restaurant-menu/manage-menu";
-import { MenuTable } from "@/features/restaurants/components/restaurant-menu/menu-table";
+import { ManageMenu } from "./manage-menu";
+import { MenuTable } from "./menu-table";
 
 export const RestaurantMenu = () => {
   return (

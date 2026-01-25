@@ -5,7 +5,7 @@ import type {
   RestaurantIdResponse,
   RestaurantMenuItem,
   RestaurantResponse
-} from "@/services/restaurants/restaurants.types";
+} from "./restaurants.types";
 
 class RestaurantsService {
   getRestaurants = (): Promise<RestaurantData[]> => request.get("/api/restaurant/my-restaurants");
