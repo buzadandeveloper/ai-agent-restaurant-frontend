@@ -1,5 +1,5 @@
-import { RouteItems } from "@/app/routes/route-items";
 import { PublicLayout } from "@/layouts/public-layout";
+import { RouteItems } from "./route-items";
 
 export const publicRoutes = [
   {

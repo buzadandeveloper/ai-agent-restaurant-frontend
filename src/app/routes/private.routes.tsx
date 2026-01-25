@@ -1,7 +1,7 @@
-import { ProtectedRoutes } from "@/app/routes/protected.routes";
-import { RouteItems } from "@/app/routes/route-items";
 import { NotFound } from "@/components/common/404/not-found";
 import { PrivateLayout } from "@/layouts/private-layout";
+import { ProtectedRoutes } from "./protected.routes";
+import { RouteItems } from "./route-items";
 
 export const privateRoutes = [
   {
