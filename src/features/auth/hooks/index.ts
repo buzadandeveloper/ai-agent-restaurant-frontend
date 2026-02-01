@@ -1,9 +1,9 @@
+import { showToast } from "@lib/show-toast";
+import { authService } from "@services/auth/auth-service";
+import type { LoginData, RegisterData } from "@services/auth/auth-types";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "@/lib/show-toast";
-import { authService } from "@/services/auth/auth.service";
-import type { LoginData, RegisterData } from "@/services/auth/auth.types";
 
 export const useLogin = () => {
   const navigate = useNavigate();

@@ -1,5 +1,4 @@
-import { useSearchParams } from "react-router-dom";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@components/ui/empty";
 import {
   Table,
   TableBody,
@@ -8,9 +7,10 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from "@/components/ui/table";
-import { MenuTableSkeleton } from "@/features/restaurants/components/skeletons/menu-stable-skeleton";
-import { useGetRestaurantMenu } from "@/features/restaurants/hooks";
+} from "@components/ui/table";
+import { MenuTableSkeleton } from "@features/restaurants/components/skeletons/menu-stable-skeleton";
+import { useGetRestaurantMenu } from "@features/restaurants/hooks";
+import { useSearchParams } from "react-router-dom";
 
 export const MenuTable = () => {
   const [searchParams] = useSearchParams();

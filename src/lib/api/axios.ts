@@ -1,6 +1,6 @@
+import { requestErrorInterceptor, requestInterceptor } from "@lib/api/request-interceptor";
+import { responseErrorInterceptor, responseInterceptor } from "@lib/api/response-interceptor";
 import $axios from "axios";
-import { requestErrorInterceptor, requestInterceptor } from "./request-interceptor.config";
-import { responseErrorInterceptor, responseInterceptor } from "./response-interceptor.config";
 
 const axios = $axios.create({
   baseURL: import.meta.env.VITE_BASE_URL

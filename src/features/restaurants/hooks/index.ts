@@ -1,9 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   restaurantsQueryKeys,
   restaurantsService
-} from "@/services/restaurants/restaurants.service";
-import type { RestaurantData } from "@/services/restaurants/restaurants.types";
+} from "@services/restaurants/restaurants-service";
+import type { RestaurantData } from "@services/restaurants/restaurants-types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useGetRestaurants = () => {
   return useQuery(restaurantsQueryKeys.getRestaurants());

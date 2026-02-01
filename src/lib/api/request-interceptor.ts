@@ -1,11 +1,11 @@
+import { showToast } from "@lib/show-toast";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
-import { showToast } from "@/lib/show-toast";
 
 const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
     config.headers["Access-Control-Allow-Credentials"] = true;
   }
 

@@ -1,6 +1,6 @@
+import { Button } from "@components/ui/button";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 interface BackButtonProps {
   level?: number | string;

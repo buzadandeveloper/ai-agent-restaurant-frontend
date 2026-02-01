@@ -1,4 +1,4 @@
-import axios from "@/config/axios.config";
+import axios from "@lib/api/axios";
 
 export const request = {
   get: async <T>(url: string, config = {}): Promise<T> => {

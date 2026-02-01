@@ -1,4 +1,4 @@
-export interface RestaurantData {
+export type RestaurantData = {
   id?: number;
   name: string;
   description: string;
@@ -12,9 +12,9 @@ export interface RestaurantData {
   createdAt?: string;
   updatedAt?: string;
   menuCsv: File | null | undefined;
-}
+};
 
-export interface RestaurantMenuItem {
+export type RestaurantMenuItem = {
   id: number;
   name: string;
   description: string;
@@ -25,14 +25,14 @@ export interface RestaurantMenuItem {
   allergens: string[];
   categoryId: number;
   categoryName: string;
-}
+};
 
-export interface RestaurantResponse {
+export type RestaurantResponse = {
   message: string;
   restaurant: RestaurantData;
-}
+};
 
-export interface RestaurantIdResponse {
+export type RestaurantIdResponse = {
   restaurantId: number;
   message: string;
-}
+};

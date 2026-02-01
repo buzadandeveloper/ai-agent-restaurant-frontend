@@ -1,7 +1,7 @@
+import { Header } from "@components/layout/header";
+import { Sidebar } from "@components/layout/sidebar";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "@/components/layout/header";
-import { Sidebar } from "@/components/layout/sidebar";
 
 export const PrivateLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);

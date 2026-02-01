@@ -1,6 +1,6 @@
+import { userQueryKeys } from "@services/user/user-service";
 import { useQuery } from "@tanstack/react-query";
-import { userQueryKeys } from "@/services/user/user.service";
 
-export const index = () => {
+export const useUserProfile = () => {
   return useQuery(userQueryKeys.profile());
 };

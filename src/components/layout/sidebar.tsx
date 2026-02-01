@@ -1,7 +1,7 @@
+import { Button } from "@components/ui/button";
 import { Home, MessageSquare, Settings, ShoppingCart, Store } from "lucide-react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 interface SidebarProps {
   sidebarOpen: boolean;
