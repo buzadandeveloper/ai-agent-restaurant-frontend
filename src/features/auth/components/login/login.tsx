@@ -1,12 +1,12 @@
+import { FormFieldWithTypes } from "@components/common/form/form-field-with-types";
+import { Button } from "@components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
+import { Form } from "@components/ui/form";
+import { useLogin } from "@features/auth/hooks";
+import { loginSchema } from "@features/auth/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { LoginData } from "@services/auth/auth-types";
 import { useForm } from "react-hook-form";
-import { FormFieldWithTypes } from "@/components/common/form/form-field-with-types";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form } from "@/components/ui/form";
-import { useLogin } from "@/features/auth/hooks";
-import { loginSchema } from "@/features/auth/schemas/auth.schema";
-import type { LoginData } from "@/services/auth/auth.types";
 
 export const Login = () => {
   const form = useForm<LoginData>({

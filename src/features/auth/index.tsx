@@ -1,9 +1,9 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
+import { Login, Register } from "@features/auth/components";
+import { showToast } from "@lib/show-toast";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Login, Register } from "@/features/auth/components";
-import { showToast } from "@/lib/show-toast";
-import type { ToastData } from "@/types/toast.types";
+import type { ToastData } from "@/types/index";
 
 export const AuthPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();

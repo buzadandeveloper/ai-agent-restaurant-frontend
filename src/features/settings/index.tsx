@@ -1,6 +1,6 @@
-import { index } from "@/features/settings/hooks";
+import { useUserProfile } from "@/features/settings/hooks";
 
 export const SettingsPage = () => {
-  const { data: userProfile } = index();
+  const { data: userProfile } = useUserProfile();
   return <div>{JSON.stringify(userProfile)}</div>;
 };

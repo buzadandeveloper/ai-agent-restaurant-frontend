@@ -1,5 +1,5 @@
-import { BackButton } from "@/components/common/back-button/back-button";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
+import { BackButton } from "@components/common/back-button/back-button";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@components/ui/empty";
 
 export const NotFound = () => {
   return (

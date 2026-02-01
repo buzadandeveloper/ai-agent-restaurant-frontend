@@ -1,6 +1,6 @@
+import { Alert, AlertDescription, AlertTitle } from "@components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import type { ToastData as ToastProps } from "@/types/toast.types";
+import type { ToastData as ToastProps } from "@/types/index";
 
 export const Toast = ({ title, description, variant }: ToastProps) => {
   return (

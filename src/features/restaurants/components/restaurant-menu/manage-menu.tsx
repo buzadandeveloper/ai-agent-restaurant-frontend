@@ -1,14 +1,14 @@
-import { Upload } from "lucide-react";
-import { useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { DeleteDialog } from "@/components/common/delete-dialog/delete-dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { DeleteDialog } from "@components/common/delete-dialog/delete-dialog";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
 import {
   useDeleteRestaurantMenu,
   useGetRestaurantMenu,
   useUploadRestaurantMenu
-} from "@/features/restaurants/hooks";
+} from "@features/restaurants/hooks";
+import { Upload } from "lucide-react";
+import { useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const ManageMenu = () => {
   const [searchParams] = useSearchParams();

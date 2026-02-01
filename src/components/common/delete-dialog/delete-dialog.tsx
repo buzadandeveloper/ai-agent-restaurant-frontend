@@ -1,5 +1,3 @@
-import { Trash2 } from "lucide-react";
-import type { Dispatch, SetStateAction } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,9 +8,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+} from "@components/ui/alert-dialog";
+import { Button } from "@components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@components/ui/tooltip";
+import { Trash2 } from "lucide-react";
+import type { Dispatch, SetStateAction } from "react";
 
 interface DeleteDialogProps {
   isOpen: boolean;

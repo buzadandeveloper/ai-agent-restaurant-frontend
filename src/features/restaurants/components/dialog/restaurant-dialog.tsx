@@ -1,10 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
-import type { Dispatch, SetStateAction } from "react";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { FormFieldWithTypes } from "@/components/common/form/form-field-with-types";
-import { Button } from "@/components/ui/button";
+import { FormFieldWithTypes } from "@components/common/form/form-field-with-types";
+import { Button } from "@components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,12 +8,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog";
-import { Form } from "@/components/ui/form";
-import { useCreateRestaurant, useUpdateRestaurant } from "@/features/restaurants/hooks";
-import { getRestaurantDialogSchema } from "@/features/restaurants/schemas/restaurant-dialog.schemas";
-import type { RestaurantDialogData } from "@/features/restaurants/types/index.types";
-import type { RestaurantData } from "@/services/restaurants/restaurants.types";
+} from "@components/ui/dialog";
+import { Form } from "@components/ui/form";
+import { useCreateRestaurant, useUpdateRestaurant } from "@features/restaurants/hooks";
+import { getRestaurantDialogSchema } from "@features/restaurants/schemas/restaurant-dialog.schemas";
+import type { RestaurantDialogData } from "@features/restaurants/types/index";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { RestaurantData } from "@services/restaurants/restaurants-types";
+import { Plus } from "lucide-react";
+import type { Dispatch, SetStateAction } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 interface RestaurantDialogProps {
   isDialogOpen: RestaurantDialogData;

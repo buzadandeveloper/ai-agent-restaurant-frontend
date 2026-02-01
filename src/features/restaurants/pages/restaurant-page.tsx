@@ -1,6 +1,6 @@
-import { BackButton } from "@/components/common/back-button/back-button";
-import { Restaurant } from "@/features/restaurants/components/restaurant/restaurant";
-import { RestaurantMenu } from "@/features/restaurants/components/restaurant-menu/restaurant-menu";
+import { BackButton } from "@components/common/back-button/back-button";
+import { Restaurant } from "@features/restaurants/components/restaurant/restaurant";
+import { RestaurantMenu } from "@features/restaurants/components/restaurant-menu/restaurant-menu";
 
 export const RestaurantPage = () => {
   return (

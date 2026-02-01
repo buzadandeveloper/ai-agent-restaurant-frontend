@@ -1,14 +1,14 @@
+import { DeleteDialog } from "@components/common/delete-dialog/delete-dialog";
+import { Button } from "@components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
+import { Label } from "@components/ui/label";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@components/ui/tooltip";
+import { useDeleteRestaurant } from "@features/restaurants/hooks";
+import type { RestaurantDialogData } from "@features/restaurants/types/index";
+import type { RestaurantData } from "@services/restaurants/restaurants-types";
 import { Check, Copy, Edit, SquareArrowOutUpRight } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DeleteDialog } from "@/components/common/delete-dialog/delete-dialog";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { useDeleteRestaurant } from "@/features/restaurants/hooks";
-import type { RestaurantDialogData } from "@/features/restaurants/types/index.types";
-import type { RestaurantData } from "@/services/restaurants/restaurants.types";
 
 interface RestaurantProps {
   restaurant: RestaurantData;
