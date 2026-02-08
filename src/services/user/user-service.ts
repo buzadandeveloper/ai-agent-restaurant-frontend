@@ -1,6 +1,6 @@
 import { request } from "@lib/api/request";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import type { UserData } from "src/services/user/user-types";
+import type { UserData } from "@services/user/user-types";
 
 class UserService {
   getUserProfile = (): Promise<UserData> => request.get("/api/user/profile");
