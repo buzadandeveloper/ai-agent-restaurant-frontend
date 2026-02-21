@@ -12,13 +12,13 @@ import {
 import { Form } from "@components/ui/form";
 import { useCreateRestaurant, useUpdateRestaurant } from "@features/restaurants/hooks";
 import { getRestaurantDialogSchema } from "@features/restaurants/schemas/restaurant-dialog.schemas";
-import type { RestaurantDialogData } from "@features/restaurants/types/index";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { RestaurantData } from "@services/restaurants/restaurants-types";
 import { Plus } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import type { RestaurantData } from "@/types/index";
+import type { RestaurantDialogData } from "../../types/index";
 
 interface RestaurantDialogProps {
   isDialogOpen: RestaurantDialogData;

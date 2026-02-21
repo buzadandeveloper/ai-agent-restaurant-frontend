@@ -1,4 +1,4 @@
-import type { RestaurantData } from "@services/restaurants/restaurants-types";
+import type { RestaurantData } from "@/types/index";
 
 export interface RestaurantDialogData {
   mode: "create" | "edit" | null;
