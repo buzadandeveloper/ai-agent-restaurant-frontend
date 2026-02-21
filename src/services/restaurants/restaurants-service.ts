@@ -1,11 +1,11 @@
 import { request } from "@lib/api/request";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import type {
-  RestaurantData,
   RestaurantIdResponse,
   RestaurantMenuItem,
   RestaurantResponse
 } from "@services/restaurants/restaurants-types";
+import type { RestaurantData } from "@/types/index";
 
 class RestaurantsService {
   getRestaurants = (): Promise<RestaurantData[]> => request.get("/api/restaurant/my-restaurants");
