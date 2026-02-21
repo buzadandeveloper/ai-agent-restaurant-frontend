@@ -11,7 +11,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
       "@app/*": ["src/app/*"],
@@ -20,6 +20,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
       "@services/*": ["src/services/*"],
+      "@hooks/*": ["src/hooks/*"],
     },
     "types": ["vite/client"]
   }
