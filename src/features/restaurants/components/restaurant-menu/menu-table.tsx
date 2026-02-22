@@ -10,15 +10,16 @@ import {
   TableRow
 } from "@components/ui/table";
 import { useGetRestaurantMenu } from "@features/restaurants/hooks";
-import { useSearchParams } from "react-router-dom";
 
-export const MenuTable = () => {
-  const [searchParams] = useSearchParams();
-  const restaurantId = Number(searchParams.get("id"));
+interface MenuTableProps {
+  restaurantId: number;
+}
 
-  const { data: menu, isLoading, isFetching } = useGetRestaurantMenu(restaurantId);
+export const MenuTable = ({ restaurantId }: MenuTableProps) => {
+  const menu = useGetRestaurantMenu(restaurantId);
 
-  if (isLoading || isFetching) return <TableSkeleton rows={4} columns={tableHeaders.length} />;
+  if (menu.isLoading || menu.isFetching)
+    return <TableSkeleton rows={4} columns={tableHeaders.length} />;
 
   return (
     <Table>
@@ -30,7 +31,7 @@ export const MenuTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {menu?.map((item, index) => (
+        {menu.data?.map((item, index) => (
           <TableRow key={item.id}>
             <TableCell>{index + 1}</TableCell>
             <TableCell>{item.name}</TableCell>
@@ -44,7 +45,7 @@ export const MenuTable = () => {
           </TableRow>
         ))}
       </TableBody>
-      <TableCaption hidden={!!menu?.length}>
+      <TableCaption hidden={!!menu.data?.length}>
         <Empty>
           <EmptyHeader>
             <EmptyTitle>No menu items</EmptyTitle>

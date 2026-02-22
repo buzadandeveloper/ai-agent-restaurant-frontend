@@ -1,6 +1,5 @@
 import { TableSkeleton } from "@components/common/table-skeleton/table-skeleton";
-import { useParams } from "react-router-dom";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@components/ui/empty";
 import {
   Table,
   TableBody,
@@ -9,13 +8,16 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from "@/components/ui/table";
+} from "@components/ui/table";
 import { useGetRestaurantTableById } from "../../hooks/index";
 
-export const OrdersTable = () => {
-  const { restaurantId, tableId } = useParams();
+interface OrdersTableProps {
+  restaurantId: number;
+  tableId: number;
+}
 
-  const table = useGetRestaurantTableById(Number(restaurantId), Number(tableId));
+export const OrdersTable = ({ restaurantId, tableId }: OrdersTableProps) => {
+  const table = useGetRestaurantTableById(restaurantId, tableId);
 
   const rows =
     table?.data?.orders.flatMap((order) =>

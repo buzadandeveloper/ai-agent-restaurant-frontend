@@ -1,8 +1,7 @@
-import { RestaurantCard } from "@features/restaurants/components/restaurant-card/restaurant-card";
-import { RestaurantCardSkeleton } from "@features/restaurants/components/skeletons/restaurant-card-skeleton";
-import type { RestaurantDialogData } from "@features/restaurants/types/index";
 import { useGetRestaurants } from "@hooks/index";
 import type { Dispatch, SetStateAction } from "react";
+import type { RestaurantDialogData } from "../../types/index";
+import { RestaurantCard, RestaurantCardSkeleton } from "../restaurant-card/index";
 
 interface RestaurantsProps {
   setIsDialogOpen: Dispatch<SetStateAction<RestaurantDialogData>>;

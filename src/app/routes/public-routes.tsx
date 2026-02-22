@@ -1,4 +1,4 @@
-import { AuthPage } from "@features/auth/index";
+import { AuthPage } from "@features/index";
 import { PublicLayout } from "@layouts/public-layout";
 
 export const publicRoutes = [

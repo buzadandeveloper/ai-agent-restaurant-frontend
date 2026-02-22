@@ -2,11 +2,11 @@ import { FormFieldWithTypes } from "@components/common/form/form-field-with-type
 import { Button } from "@components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
 import { Form } from "@components/ui/form";
-import { useRegister } from "@features/auth/hooks";
-import { registerSchema } from "@features/auth/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { RegisterData } from "@services/auth/auth-types";
 import { useForm } from "react-hook-form";
+import { useRegister } from "../../hooks/index";
+import { registerSchema } from "../../schemas/auth.schema";
 
 export const Register = () => {
   const form = useForm<RegisterData>({

@@ -1,7 +1,7 @@
 import { Button } from "@components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
 import type { Table } from "@services/tables/tables-types";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface TableCardProps {
   table: Table;
