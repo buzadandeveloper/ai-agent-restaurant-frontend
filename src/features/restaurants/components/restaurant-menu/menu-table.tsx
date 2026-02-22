@@ -1,3 +1,4 @@
+import { TableSkeleton } from "@components/common/table-skeleton/table-skeleton";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@components/ui/empty";
 import {
   Table,
@@ -8,29 +9,29 @@ import {
   TableHeader,
   TableRow
 } from "@components/ui/table";
-import { MenuTableSkeleton } from "@features/restaurants/components/skeletons/menu-stable-skeleton";
 import { useGetRestaurantMenu } from "@features/restaurants/hooks";
-import { useSearchParams } from "react-router-dom";
 
-export const MenuTable = () => {
-  const [searchParams] = useSearchParams();
-  const restaurantId = Number(searchParams.get("id"));
+interface MenuTableProps {
+  restaurantId: number;
+}
 
-  const { data: menu, isLoading, isFetching } = useGetRestaurantMenu(restaurantId);
+export const MenuTable = ({ restaurantId }: MenuTableProps) => {
+  const menu = useGetRestaurantMenu(restaurantId);
 
-  if (isLoading || isFetching) return <MenuTableSkeleton />;
+  if (menu.isLoading || menu.isFetching)
+    return <TableSkeleton rows={4} columns={tableHeaders.length} />;
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          {TableHeads.map((head) => (
+          {tableHeaders.map((head) => (
             <TableHead key={head}>{head}</TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {menu?.map((item, index) => (
+        {menu.data?.map((item, index) => (
           <TableRow key={item.id}>
             <TableCell>{index + 1}</TableCell>
             <TableCell>{item.name}</TableCell>
@@ -44,7 +45,7 @@ export const MenuTable = () => {
           </TableRow>
         ))}
       </TableBody>
-      <TableCaption hidden={!!menu?.length}>
+      <TableCaption hidden={!!menu.data?.length}>
         <Empty>
           <EmptyHeader>
             <EmptyTitle>No menu items</EmptyTitle>
@@ -58,7 +59,7 @@ export const MenuTable = () => {
   );
 };
 
-const TableHeads = [
+const tableHeaders = [
   "No.",
   "Name",
   "Category",

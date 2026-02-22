@@ -1,21 +1,20 @@
-import { RestaurantCard } from "@features/restaurants/components/restaurant-card/restaurant-card";
-import { RestaurantCardSkeleton } from "@features/restaurants/components/skeletons/restaurant-card-skeleton";
-import { useGetRestaurant } from "@features/restaurants/hooks";
-import { useSearchParams } from "react-router-dom";
+import { useGetRestaurant } from "../../hooks/index";
+import { RestaurantCard, RestaurantCardSkeleton } from "../restaurant-card/index";
 
-export const Restaurant = () => {
-  const [searchParams] = useSearchParams();
-  const restaurantId = searchParams.get("id");
+interface RestaurantProps {
+  restaurantId: number;
+}
 
-  const { data: restaurant, isLoading } = useGetRestaurant(Number(restaurantId) || 0);
+export const Restaurant = ({ restaurantId }: RestaurantProps) => {
+  const restaurant = useGetRestaurant(restaurantId);
 
-  if (isLoading) {
+  if (restaurant.isLoading) {
     return <RestaurantCardSkeleton withActionZone={false} />;
   }
 
   return (
     <div>
-      <RestaurantCard restaurant={restaurant!} withActionZone={false} />
+      <RestaurantCard restaurant={restaurant.data!} withActionZone={false} />
     </div>
   );
 };

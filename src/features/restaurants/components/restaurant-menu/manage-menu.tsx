@@ -1,30 +1,30 @@
 import { DeleteDialog } from "@components/common/delete-dialog/delete-dialog";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
+import { Upload } from "lucide-react";
+import { useRef, useState } from "react";
 import {
   useDeleteRestaurantMenu,
   useGetRestaurantMenu,
   useUploadRestaurantMenu
-} from "@features/restaurants/hooks";
-import { Upload } from "lucide-react";
-import { useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+} from "../../hooks/index";
 
-export const ManageMenu = () => {
-  const [searchParams] = useSearchParams();
-  const restaurantId = Number(searchParams.get("id"));
+interface ManageMenuProps {
+  restaurantId: number;
+}
 
+export const ManageMenu = ({ restaurantId }: ManageMenuProps) => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { data: menu } = useGetRestaurantMenu(restaurantId);
-  const { mutate: deleteMenu, isPending: deleteMenuPending } = useDeleteRestaurantMenu();
-  const { mutate: uploadMenu, isPending: uploadMenuPending } = useUploadRestaurantMenu();
+  const menu = useGetRestaurantMenu(restaurantId);
+  const deleteMenu = useDeleteRestaurantMenu();
+  const uploadMenu = useUploadRestaurantMenu();
 
   const handleDeleteMenu = () => {
     if (restaurantId)
-      deleteMenu(restaurantId, {
+      deleteMenu.mutate(restaurantId, {
         onSuccess: () => {
           setIsDeleteDialogOpen(false);
         }
@@ -41,13 +41,13 @@ export const ManageMenu = () => {
       const formData = new FormData();
       formData.append("menuCsv", file);
 
-      uploadMenu({ id: restaurantId, data: formData });
+      uploadMenu.mutate({ id: restaurantId, data: formData });
     }
   };
 
   return (
     <div className="flex justify-end items-center gap-4">
-      <Button size="sm" onClick={handleUploadClick} disabled={uploadMenuPending}>
+      <Button size="sm" onClick={handleUploadClick} disabled={uploadMenu.isPending}>
         <Upload /> Upload menu
       </Button>
       <Input ref={fileInputRef} type="file" hidden={true} onChange={handleFileChange} />
@@ -58,8 +58,8 @@ export const ManageMenu = () => {
         description="Are you sure you want to delete the entire menu? This action cannot be undone."
         buttonTitle="Delete menu"
         handleDelete={handleDeleteMenu}
-        isPending={deleteMenuPending}
-        disabled={!menu}
+        isPending={deleteMenu.isPending}
+        disabled={!menu?.data}
       />
     </div>
   );

@@ -11,15 +11,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
       "@app/*": ["src/app/*"],
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
-      "@services/*": ["src/services/*"],
+      "@services/*": ["src/services/*"]
     },
     "types": ["vite/client"]
   }

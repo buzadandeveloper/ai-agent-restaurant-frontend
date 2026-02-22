@@ -3,12 +3,12 @@ import { Button } from "@components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
 import { Label } from "@components/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@components/ui/tooltip";
-import { useDeleteRestaurant } from "@features/restaurants/hooks";
-import type { RestaurantDialogData } from "@features/restaurants/types/index";
-import type { RestaurantData } from "@services/restaurants/restaurants-types";
 import { Check, Copy, Edit, SquareArrowOutUpRight } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { RestaurantData } from "@/types/index";
+import { useDeleteRestaurant } from "../../hooks/index";
+import type { RestaurantDialogData } from "../../types/index";
 
 interface RestaurantProps {
   restaurant: RestaurantData;
@@ -34,15 +34,16 @@ export const RestaurantCard = ({
   };
 
   const handleNavigateToRestaurantDetails = () => {
-    navigate(`restaurant?id=${restaurant.id}`);
+    navigate(`restaurant/${restaurant.id}`);
   };
 
   const handleDelete = () => {
-    deleteRestaurant(restaurant.id!, {
-      onSuccess: () => {
-        setIsDeleteDialogOpen(false);
-      }
-    });
+    if (restaurant.id)
+      deleteRestaurant(restaurant.id, {
+        onSuccess: () => {
+          setIsDeleteDialogOpen(false);
+        }
+      });
   };
 
   return (

@@ -1,5 +1,5 @@
 import { request } from "@lib/api/request";
-import type { LoginData, RegisterData } from "@services/auth/auth-types";
+import type { LoginData, RegisterData } from "./auth-types";
 
 class AuthService {
   register = (payload: RegisterData) => request.post("/api/auth/register", payload);

@@ -2,12 +2,8 @@ import {
   restaurantsQueryKeys,
   restaurantsService
 } from "@services/restaurants/restaurants-service";
-import type { RestaurantData } from "@services/restaurants/restaurants-types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-export const useGetRestaurants = () => {
-  return useQuery(restaurantsQueryKeys.getRestaurants());
-};
+import type { RestaurantData } from "@/types/index";
 
 export const useGetRestaurant = (id: number) => {
   return useQuery(restaurantsQueryKeys.getRestaurantById(id));

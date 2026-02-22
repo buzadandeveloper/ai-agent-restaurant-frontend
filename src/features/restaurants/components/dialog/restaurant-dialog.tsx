@@ -10,15 +10,15 @@ import {
   DialogTrigger
 } from "@components/ui/dialog";
 import { Form } from "@components/ui/form";
-import { useCreateRestaurant, useUpdateRestaurant } from "@features/restaurants/hooks";
-import { getRestaurantDialogSchema } from "@features/restaurants/schemas/restaurant-dialog.schemas";
-import type { RestaurantDialogData } from "@features/restaurants/types/index";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { RestaurantData } from "@services/restaurants/restaurants-types";
 import { Plus } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import type { RestaurantData } from "@/types/index";
+import { useCreateRestaurant, useUpdateRestaurant } from "../../hooks/index";
+import { getRestaurantDialogSchema } from "../../schemas/restaurant-dialog.schemas";
+import type { RestaurantDialogData } from "../../types/index";
 
 interface RestaurantDialogProps {
   isDialogOpen: RestaurantDialogData;
@@ -35,10 +35,10 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
     defaultValues
   });
 
-  const { mutate: createRestaurant, isPending: createRestaurantPending } = useCreateRestaurant();
-  const { mutate: updateRestaurant, isPending: updateRestaurantPending } = useUpdateRestaurant();
+  const createRestaurant = useCreateRestaurant();
+  const updateRestaurant = useUpdateRestaurant();
 
-  const inPending = createRestaurantPending || updateRestaurantPending;
+  const inPending = createRestaurant.isPending || updateRestaurant.isPending;
 
   useEffect(() => {
     if (!modalData) return;
@@ -67,7 +67,7 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
     }
 
     if (isCreateMode) {
-      createRestaurant(formData, {
+      createRestaurant.mutate(formData, {
         onSuccess: () => {
           handleClose();
         }
@@ -76,7 +76,7 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
       const restaurantId = modalData?.id;
       if (!restaurantId) return;
 
-      updateRestaurant(
+      updateRestaurant.mutate(
         { id: restaurantId, data: formData },
         {
           onSuccess: () => {
