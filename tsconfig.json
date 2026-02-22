@@ -17,10 +17,10 @@
       "@app/*": ["src/app/*"],
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
-      "@services/*": ["src/services/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@services/*": ["src/services/*"]
     },
     "types": ["vite/client"]
   }
