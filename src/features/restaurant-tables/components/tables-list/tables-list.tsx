@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGetRestaurantsOrderTables } from "../../hooks/index";
+import { useGetRestaurantsTables } from "../../hooks/index";
 import { TableCard } from "./table-card";
 import { TableCardSkeleton } from "./table-card-skeleton";
 
 export const TablesList = () => {
-  const { id } = useParams();
+  const { restaurantId } = useParams();
 
-  const restaurantTables = useGetRestaurantsOrderTables(Number(id));
+  const restaurantTables = useGetRestaurantsTables(Number(restaurantId));
 
   return (
     <Card>

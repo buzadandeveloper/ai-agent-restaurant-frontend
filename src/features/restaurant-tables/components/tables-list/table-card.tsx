@@ -1,5 +1,6 @@
 import { Button } from "@components/ui/button";
-import type { Table } from "@services/order-tables/order-tables-types";
+import type { Table } from "@services/tables/tables-types";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface TableCardProps {
@@ -7,6 +8,12 @@ interface TableCardProps {
 }
 
 export const TableCard = ({ table }: TableCardProps) => {
+  const navigate = useNavigate();
+
+  const handleOpenTable = () => {
+    navigate(`table/${table.id}`);
+  };
+
   return (
     <Card className="gap-0">
       <CardHeader>
@@ -25,7 +32,9 @@ export const TableCard = ({ table }: TableCardProps) => {
         </div>
       </CardHeader>
       <CardContent>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline" onClick={() => handleOpenTable()}>
+          Open
+        </Button>
       </CardContent>
     </Card>
   );

@@ -1,6 +1,6 @@
-import { orderTablesQueryKeys } from "@services/order-tables/order-tables-service";
+import { tablesQueryKeys } from "@services/tables/tables-service";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetRestaurantsOrderTables = (restaurantId: number) => {
-  return useQuery(orderTablesQueryKeys.getRestaurantsOrderTables(restaurantId));
+export const useGetRestaurantsTables = (restaurantId: number) => {
+  return useQuery(tablesQueryKeys.getRestaurantsTables(restaurantId));
 };

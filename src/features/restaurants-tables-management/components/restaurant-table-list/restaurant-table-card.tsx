@@ -12,7 +12,7 @@ export const RestaurantTableCard = ({ restaurant }: RestaurantTableCardProps) =>
   const navigate = useNavigate();
 
   const handleViewTables = () => {
-    if (restaurant.id) navigate(`/restaurants-tables-management/${restaurant.id}`);
+    if (restaurant.id) navigate(`restaurant/${restaurant.id}`);
   };
 
   return (

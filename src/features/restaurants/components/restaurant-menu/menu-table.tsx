@@ -1,3 +1,4 @@
+import { TableSkeleton } from "@components/common/table-skeleton/table-skeleton";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@components/ui/empty";
 import {
   Table,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableRow
 } from "@components/ui/table";
-import { MenuTableSkeleton } from "@features/restaurants/components/skeletons/menu-stable-skeleton";
 import { useGetRestaurantMenu } from "@features/restaurants/hooks";
 import { useSearchParams } from "react-router-dom";
 
@@ -18,13 +18,13 @@ export const MenuTable = () => {
 
   const { data: menu, isLoading, isFetching } = useGetRestaurantMenu(restaurantId);
 
-  if (isLoading || isFetching) return <MenuTableSkeleton />;
+  if (isLoading || isFetching) return <TableSkeleton rows={4} columns={tableHeaders.length} />;
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          {TableHeads.map((head) => (
+          {tableHeaders.map((head) => (
             <TableHead key={head}>{head}</TableHead>
           ))}
         </TableRow>
@@ -58,7 +58,7 @@ export const MenuTable = () => {
   );
 };
 
-const TableHeads = [
+const tableHeaders = [
   "No.",
   "Name",
   "Category",
