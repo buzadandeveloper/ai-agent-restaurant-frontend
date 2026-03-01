@@ -88,128 +88,118 @@ export const RestaurantDialog = ({ isDialogOpen, setIsDialogOpen }: RestaurantDi
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <p className="text-muted-foreground">Manage your restaurant locations</p>
-        <Dialog
-          open={isDialogOpen.mode !== null}
-          onOpenChange={(open) => {
-            if (!open) handleClose();
-          }}
-        >
-          <DialogTrigger asChild>
-            <Button onClick={() => setIsDialogOpen({ mode: "create", data: null })}>
-              <Plus className="mr-2 h-4 w-4" />
-              Add Restaurant
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{isCreateMode ? "Add new restaurant" : "Edit restaurant"}</DialogTitle>
-              <DialogDescription>
-                {isCreateMode
-                  ? "Enter the details for the new restaurant"
-                  : "Update the restaurant details"}
-              </DialogDescription>
-            </DialogHeader>
-            <Form {...form}>
-              <form id="restaurant-dialog-form" onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="space-y-4 flex flex-col gap-2">
-                  <div className="flex w-full gap-4">
-                    <FormFieldWithTypes
-                      form={form}
-                      type="text"
-                      name="name"
-                      label="Restaurant name"
-                      placeholder="Pizza Palace"
-                      ariaInvalid={!!form.formState.errors.name}
-                    />
-                    <FormFieldWithTypes
-                      form={form}
-                      type="number"
-                      name="numberOfTables"
-                      label="Number of tables"
-                      placeholder="15"
-                      minLength={1}
-                      maxLength={25}
-                      ariaInvalid={!!form.formState.errors.numberOfTables}
-                    />
-                  </div>
-                  <FormFieldWithTypes
-                    form={form}
-                    type="textarea"
-                    name="description"
-                    label="Description"
-                    placeholder="A cozy Italian restaurant known for its authentic wood-fired pizzas..."
-                    maxLength={500}
-                    ariaInvalid={!!form.formState.errors.description}
-                  />
-                  <div className="flex w-full gap-4">
-                    <FormFieldWithTypes
-                      form={form}
-                      type="text"
-                      name="founder"
-                      label="Founder"
-                      placeholder="John Doe"
-                      ariaInvalid={!!form.formState.errors.founder}
-                    />
-                    <FormFieldWithTypes
-                      form={form}
-                      type="text"
-                      name="administrator"
-                      label="Administrator"
-                      placeholder="Jane Smith"
-                      ariaInvalid={!!form.formState.errors.administrator}
-                    />
-                  </div>
-                  <div className="flex w-full gap-4">
-                    <FormFieldWithTypes
-                      form={form}
-                      type="tel"
-                      name="phone"
-                      label="Phone number"
-                      placeholder="+1 (555) 123-4567"
-                      ariaInvalid={!!form.formState.errors.phone}
-                    />
-                    <FormFieldWithTypes
-                      form={form}
-                      type="text"
-                      name="address"
-                      label="Address"
-                      placeholder="123 Main Street, City, Country"
-                      ariaInvalid={!!form.formState.errors.address}
-                    />
-                  </div>
-                  {isCreateMode ? (
-                    <FormFieldWithTypes
-                      form={form}
-                      type="file"
-                      name="menuCsv"
-                      label="Menu CSV"
-                      ariaInvalid={!!form.formState.errors.menuCsv}
-                      accept=".csv"
-                    />
-                  ) : null}
-                  <DialogFooter>
-                    <Button
-                      variant="outline"
-                      type="button"
-                      disabled={inPending}
-                      onClick={handleClose}
-                    >
-                      Cancel
-                    </Button>
-                    <Button type="submit" disabled={inPending}>
-                      Save
-                    </Button>
-                  </DialogFooter>
-                </div>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </div>
+    <Dialog
+      open={isDialogOpen.mode !== null}
+      onOpenChange={(open) => {
+        if (!open) handleClose();
+      }}
+    >
+      <DialogTrigger asChild>
+        <Button onClick={() => setIsDialogOpen({ mode: "create", data: null })}>
+          <Plus className="mr-2 h-4 w-4" />
+          Add Restaurant
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{isCreateMode ? "Add new restaurant" : "Edit restaurant"}</DialogTitle>
+          <DialogDescription>
+            {isCreateMode
+              ? "Enter the details for the new restaurant"
+              : "Update the restaurant details"}
+          </DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form id="restaurant-dialog-form" onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="space-y-4 flex flex-col gap-2">
+              <div className="flex w-full gap-4">
+                <FormFieldWithTypes
+                  form={form}
+                  type="text"
+                  name="name"
+                  label="Restaurant name"
+                  placeholder="Pizza Palace"
+                  ariaInvalid={!!form.formState.errors.name}
+                />
+                <FormFieldWithTypes
+                  form={form}
+                  type="number"
+                  name="numberOfTables"
+                  label="Number of tables"
+                  placeholder="15"
+                  minLength={1}
+                  maxLength={25}
+                  ariaInvalid={!!form.formState.errors.numberOfTables}
+                />
+              </div>
+              <FormFieldWithTypes
+                form={form}
+                type="textarea"
+                name="description"
+                label="Description"
+                placeholder="A cozy Italian restaurant known for its authentic wood-fired pizzas..."
+                maxLength={500}
+                ariaInvalid={!!form.formState.errors.description}
+              />
+              <div className="flex w-full gap-4">
+                <FormFieldWithTypes
+                  form={form}
+                  type="text"
+                  name="founder"
+                  label="Founder"
+                  placeholder="John Doe"
+                  ariaInvalid={!!form.formState.errors.founder}
+                />
+                <FormFieldWithTypes
+                  form={form}
+                  type="text"
+                  name="administrator"
+                  label="Administrator"
+                  placeholder="Jane Smith"
+                  ariaInvalid={!!form.formState.errors.administrator}
+                />
+              </div>
+              <div className="flex w-full gap-4">
+                <FormFieldWithTypes
+                  form={form}
+                  type="tel"
+                  name="phone"
+                  label="Phone number"
+                  placeholder="+1 (555) 123-4567"
+                  ariaInvalid={!!form.formState.errors.phone}
+                />
+                <FormFieldWithTypes
+                  form={form}
+                  type="text"
+                  name="address"
+                  label="Address"
+                  placeholder="123 Main Street, City, Country"
+                  ariaInvalid={!!form.formState.errors.address}
+                />
+              </div>
+              {isCreateMode ? (
+                <FormFieldWithTypes
+                  form={form}
+                  type="file"
+                  name="menuCsv"
+                  label="Menu CSV"
+                  ariaInvalid={!!form.formState.errors.menuCsv}
+                  accept=".csv"
+                />
+              ) : null}
+              <DialogFooter>
+                <Button variant="outline" type="button" disabled={inPending} onClick={handleClose}>
+                  Cancel
+                </Button>
+                <Button type="submit" disabled={inPending}>
+                  Save
+                </Button>
+              </DialogFooter>
+            </div>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
   );
 };
 

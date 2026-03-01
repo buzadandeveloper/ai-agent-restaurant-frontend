@@ -1,9 +1,8 @@
 import { DeleteDialog } from "@components/common/delete-dialog/delete-dialog";
 import { Button } from "@components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
-import { Label } from "@components/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@components/ui/tooltip";
-import { Check, Copy, Edit, SquareArrowOutUpRight } from "lucide-react";
+import { Edit, SquareArrowOutUpRight } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { RestaurantData } from "@/types/index";
@@ -25,13 +24,6 @@ export const RestaurantCard = ({
   const { mutate: deleteRestaurant, isPending } = useDeleteRestaurant();
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [copiedKey, setCopiedKey] = useState<number | null>(null);
-
-  const copyToClipboard = (configKey: string, id: number) => {
-    navigator.clipboard.writeText(configKey);
-    setCopiedKey(id);
-    setTimeout(() => setCopiedKey(null), 2000);
-  };
 
   const handleNavigateToRestaurantDetails = () => {
     navigate(`restaurant/${restaurant.id}`);
@@ -121,25 +113,6 @@ export const RestaurantCard = ({
             <span className="text-muted-foreground">Admin:</span>
             <p className="font-medium">{restaurant.administrator}</p>
           </div>
-        </div>
-
-        <div className="pt-2 border-t">
-          <Label className="text-xs text-muted-foreground mb-2 block">Config key</Label>
-          <Card className="flex flex-row items-center justify-between rounded-md w-full px-2 py-0.5">
-            <p className="font-mono text-sm opacity-50 cursor-default">{restaurant.configKey}</p>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-7 h-6"
-              onClick={() => copyToClipboard(restaurant.configKey!, restaurant.id!)}
-            >
-              {copiedKey === restaurant.id ? (
-                <Check className="h-4 w-4" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-            </Button>
-          </Card>
         </div>
       </CardContent>
     </Card>

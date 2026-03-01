@@ -1,3 +1,5 @@
+import { PageWrapper } from "@components/common/page-wrapper/page-wrapper";
+import { TitlePage } from "@components/common/title-page/title-page";
 import { useState } from "react";
 import { RestaurantDialog } from "../components/dialog/restaurant-dialog";
 import { RestaurantList } from "../components/restaurant-list/restaurant-list";
@@ -10,11 +12,13 @@ export const RestaurantsPage = () => {
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <RestaurantDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
+    <PageWrapper>
+      <TitlePage title="Manage your restaurant locations">
+        <RestaurantDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
+      </TitlePage>
       <div className="flex flex-col gap-4">
         <RestaurantList setIsDialogOpen={setIsDialogOpen} />
       </div>
-    </div>
+    </PageWrapper>
   );
 };
