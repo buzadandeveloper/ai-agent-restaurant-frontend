@@ -1,14 +1,12 @@
+import { PageWrapper } from "@components/common/page-wrapper/page-wrapper";
+import { TitlePage } from "@components/common/title-page/title-page";
 import { RestaurantTableList } from "../components/restaurant-table-list/restaurant-table-list";
 
 export const RestaurantsTablesManagementPage = () => {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <p className="text-muted-foreground">View restaurant tables</p>
-        </div>
-      </div>
+    <PageWrapper>
+      <TitlePage title="View restaurant tables" />
       <RestaurantTableList />
-    </div>
+    </PageWrapper>
   );
 };

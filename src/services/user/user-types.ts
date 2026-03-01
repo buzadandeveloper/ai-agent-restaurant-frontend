@@ -3,6 +3,7 @@ export type UserData = {
   firstName: string;
   lastName: string;
   email: string;
+  configKey: string;
   createdAt: string;
   updatedAt: string;
 };

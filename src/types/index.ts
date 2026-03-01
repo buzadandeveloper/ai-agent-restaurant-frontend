@@ -13,7 +13,6 @@ export type RestaurantData = {
   numberOfTables: number;
   phone: string;
   address: string;
-  configKey?: string;
   ownerId?: number;
   createdAt?: string;
   updatedAt?: string;

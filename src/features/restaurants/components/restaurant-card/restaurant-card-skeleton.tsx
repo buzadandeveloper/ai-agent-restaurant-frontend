@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader } from "@components/ui/card";
-import { Label } from "@components/ui/label";
 import { Skeleton } from "@components/ui/skeleton";
 
 interface RestaurantCardSkeletonProps {
@@ -40,10 +39,6 @@ export const RestaurantCardSkeleton = ({ withActionZone = true }: RestaurantCard
               <Skeleton className="h-3 w-1/2 rounded" />
             </div>
           ))}
-        </div>
-        <div className="pt-2 border-t">
-          <Label className="text-xs text-muted-foreground mb-2 block">Config key</Label>
-          <Skeleton className="h-8 w-full rounded" />
         </div>
       </CardContent>
     </Card>
