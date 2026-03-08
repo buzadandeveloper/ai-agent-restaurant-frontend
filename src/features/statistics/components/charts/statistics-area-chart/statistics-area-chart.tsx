@@ -10,7 +10,7 @@ import { StatisticsAreaChartSkeleton } from "./statistics-area-chart-skeleton";
 
 interface StatisticsAreaChartProps<TData> {
   data: TData[];
-  isLoading: boolean;
+  isLoading?: boolean;
   config: ChartConfig;
   title: string;
   dataKey: string;

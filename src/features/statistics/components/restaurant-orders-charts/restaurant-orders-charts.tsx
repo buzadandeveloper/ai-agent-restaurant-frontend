@@ -1,7 +1,6 @@
-import { statisticsQueryKeys } from "@services/statistics/statistics-service";
-import { useQuery } from "@tanstack/react-query";
 import type { ChartConfig } from "@/components/ui/chart";
 import type { TimeRangeData } from "../../constants/index";
+import { useGetDailyStatistics } from "../../hooks/index";
 import { getTimeRange } from "../../utils/index";
 import { StatisticsAreaChart } from "../charts/statistics-area-chart/statistics-area-chart";
 
@@ -13,23 +12,23 @@ interface RestaurantOrdersChartsProps {
 }
 
 export const RestaurantOrdersCharts = ({ chartData }: RestaurantOrdersChartsProps) => {
-  const statistics = useQuery({
-    ...statisticsQueryKeys.dailyStats(chartData.restaurantId!, getTimeRange(chartData.timeRange)),
-    enabled: !!chartData.restaurantId
-  });
+  const statistics = useGetDailyStatistics(
+    chartData.restaurantId,
+    getTimeRange(chartData.timeRange)
+  );
 
   return (
     <div className="space-y-4">
       <StatisticsAreaChart
         data={statistics?.data?.dailyData ?? []}
-        isLoading={statistics.isLoading}
+        isLoading={statistics?.isLoading}
         config={chartConfig}
         title="Restaurant total orders revenue"
         dataKey="totalRevenue"
       />
       <StatisticsAreaChart
         data={statistics?.data?.dailyData ?? []}
-        isLoading={statistics.isLoading}
+        isLoading={statistics?.isLoading}
         config={chartConfig}
         title="Restaurant total orders count"
         dataKey="ordersCount"
