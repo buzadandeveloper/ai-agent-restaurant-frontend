@@ -8,7 +8,7 @@ interface SidebarProps {
 
 export const Header = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
-    <header className="w-full sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-6">
+    <header className="w-full h-[64px] sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-6">
       <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
         <Menu className="h-5 w-5" />
       </Button>

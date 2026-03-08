@@ -6,7 +6,8 @@ import {
   RestaurantsTablesManagementPage,
   RestaurantTablePage,
   RestaurantTablesPage,
-  SettingsPage
+  SettingsPage,
+  StatisticsPage
 } from "@features/index";
 import { PrivateLayout } from "@layouts/private-layout";
 
@@ -17,6 +18,10 @@ export const privateRoutes = [
       {
         element: <PrivateLayout />,
         children: [
+          {
+            path: "dashboard",
+            element: <StatisticsPage />
+          },
           {
             path: "restaurants",
             children: [

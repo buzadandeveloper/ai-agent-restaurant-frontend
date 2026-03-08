@@ -3,5 +3,5 @@ interface PageWrapperProps {
 }
 
 export const PageWrapper = ({ children }: PageWrapperProps) => {
-  return <div className="space-y-4">{children}</div>;
+  return <div className="space-y-4 ">{children}</div>;
 };
