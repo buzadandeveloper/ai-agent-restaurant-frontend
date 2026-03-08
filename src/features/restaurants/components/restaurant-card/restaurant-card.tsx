@@ -21,17 +21,17 @@ export const RestaurantCard = ({
   withActionZone = true
 }: RestaurantProps) => {
   const navigate = useNavigate();
-  const { mutate: deleteRestaurant, isPending } = useDeleteRestaurant();
+  const deleteRestaurant = useDeleteRestaurant();
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleNavigateToRestaurantDetails = () => {
-    navigate(`restaurant/${restaurant.id}`);
+    if (restaurant.id) navigate(`restaurant/${restaurant.id}`);
   };
 
   const handleDelete = () => {
     if (restaurant.id)
-      deleteRestaurant(restaurant.id, {
+      deleteRestaurant.mutate(restaurant.id, {
         onSuccess: () => {
           setIsDeleteDialogOpen(false);
         }
@@ -82,7 +82,7 @@ export const RestaurantCard = ({
                     description="This action cannot be undone. This will permanently delete the restaurant and all of its
             data."
                     handleDelete={handleDelete}
-                    isPending={isPending}
+                    isPending={deleteRestaurant.isPending}
                   />
                 </TooltipTrigger>
                 <TooltipContent>Delete</TooltipContent>

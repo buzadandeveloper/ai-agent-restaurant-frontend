@@ -1,8 +1,7 @@
 import { PageWrapper } from "@components/common/page-wrapper/page-wrapper";
 import { TitlePage } from "@components/common/title-page/title-page";
 import { useUserProfile } from "@/features/settings/hooks";
-import { ConfigurationCard } from "./components/configuration-card/configuration-card";
-import { ProfileInformationCard } from "./components/profile-information-card/profile-information-card";
+import { ConfigurationCard, ProfileInformationCard } from "./components/index";
 
 export const SettingsPage = () => {
   const userProfile = useUserProfile();

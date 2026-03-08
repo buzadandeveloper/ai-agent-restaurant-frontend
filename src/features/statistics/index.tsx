@@ -1,8 +1,7 @@
 import { PageWrapper } from "@components/common/page-wrapper/page-wrapper";
 import { TitlePage } from "@components/common/title-page/title-page";
 import { useState } from "react";
-import { RestaurantOrdersCharts } from "./components/restaurant-orders-charts/restaurant-orders-charts";
-import { Toolbar } from "./components/toolbar/toolbar";
+import { RestaurantOrdersCharts, Toolbar } from "./components/index";
 import type { TimeRangeData } from "./constants/index";
 
 export const StatisticsPage = () => {

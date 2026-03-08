@@ -19,10 +19,10 @@ export const Register = () => {
     }
   });
 
-  const { mutate: register, isPending } = useRegister();
+  const register = useRegister();
 
   const onSubmit = (data: RegisterData) => {
-    register(data, {
+    register.mutate(data, {
       onSuccess: () => {
         form.reset();
       }
@@ -70,7 +70,7 @@ export const Register = () => {
               placeholder="********"
               ariaInvalid={!!form.formState.errors.password}
             />
-            <Button className="w-full mt-2" type="submit" disabled={isPending}>
+            <Button className="w-full mt-2" type="submit" disabled={register.isPending}>
               Create account
             </Button>
           </form>
