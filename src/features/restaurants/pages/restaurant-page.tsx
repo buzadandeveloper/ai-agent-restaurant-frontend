@@ -1,7 +1,6 @@
 import { BackButton } from "@components/common/back-button/back-button";
 import { useParams } from "react-router-dom";
-import { Restaurant } from "../components/restaurant/restaurant";
-import { RestaurantMenu } from "../components/restaurant-menu/restaurant-menu";
+import { Restaurant, RestaurantMenu } from "../components/index";
 
 export const RestaurantPage = () => {
   const params = useParams();

@@ -8,13 +8,13 @@ interface RestaurantsProps {
 }
 
 export const RestaurantList = ({ setIsDialogOpen }: RestaurantsProps) => {
-  const { data: restaurants, isLoading } = useGetRestaurants();
+  const restaurants = useGetRestaurants();
 
-  if (isLoading) {
+  if (restaurants.isLoading) {
     return [1, 2, 3].map((skeleton) => <RestaurantCardSkeleton key={skeleton} />);
   }
 
-  return restaurants?.map((restaurant) => (
+  return restaurants?.data?.map((restaurant) => (
     <RestaurantCard key={restaurant.id} restaurant={restaurant} setIsDialogOpen={setIsDialogOpen} />
   ));
 };

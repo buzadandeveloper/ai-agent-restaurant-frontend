@@ -17,10 +17,10 @@ export const Login = () => {
     }
   });
 
-  const { mutate: login, isPending } = useLogin();
+  const login = useLogin();
 
   const onSubmit = (data: LoginData) => {
-    login(data);
+    login.mutate(data);
   };
 
   return (
@@ -48,7 +48,7 @@ export const Login = () => {
               placeholder="********"
               ariaInvalid={!!form.formState.errors.password}
             />
-            <Button className="w-full mt-2" type="submit" disabled={isPending}>
+            <Button className="w-full mt-2" type="submit" disabled={login.isPending}>
               Sign in
             </Button>
           </form>

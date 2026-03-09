@@ -4,10 +4,12 @@ pre-commit:
     biome:
       run: pnpm lint {staged_files}
       glob: "src/**/*.{ts,tsx,js,json}"
+      exclude: "src/components/ui/**/*"
       stage_fixed: true
     tsc:
       run: pnpm typecheck
       glob: "src/**/*.{ts,tsx}"
+      exclude: "src/components/ui/**/*"
 
 commit-msg:
   commands:

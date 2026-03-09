@@ -1,8 +1,7 @@
 import { PageWrapper } from "@components/common/page-wrapper/page-wrapper";
 import { TitlePage } from "@components/common/title-page/title-page";
 import { useState } from "react";
-import { RestaurantDialog } from "../components/dialog/restaurant-dialog";
-import { RestaurantList } from "../components/restaurant-list/restaurant-list";
+import { RestaurantDialog, RestaurantList } from "../components/index";
 import type { RestaurantDialogData } from "../types/index";
 
 export const RestaurantsPage = () => {
