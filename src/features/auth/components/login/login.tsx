@@ -5,10 +5,13 @@ import { Form } from "@components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { LoginData } from "@services/auth/auth-types";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 import { useLogin } from "../../hooks/index";
-import { loginSchema } from "../../schemas/auth.schema";
+import { loginSchema } from "../../schemas/auth-schemas";
 
 export const Login = () => {
+  const [_, setSearchParams] = useSearchParams();
+
   const form = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -18,6 +21,8 @@ export const Login = () => {
   });
 
   const login = useLogin();
+
+  const handleForgotPassword = () => setSearchParams({ tab: "login", resetPassword: "true" });
 
   const onSubmit = (data: LoginData) => {
     login.mutate(data);
@@ -48,9 +53,16 @@ export const Login = () => {
               placeholder="********"
               ariaInvalid={!!form.formState.errors.password}
             />
-            <Button className="w-full mt-2" type="submit" disabled={login.isPending}>
-              Sign in
-            </Button>
+            <div>
+              <div className="flex justify-end">
+                <Button variant="link" type="button" onClick={() => handleForgotPassword()}>
+                  Forgot password?
+                </Button>
+              </div>
+              <Button className="w-full mt-2" type="submit" disabled={login.isPending}>
+                Sign in
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>
