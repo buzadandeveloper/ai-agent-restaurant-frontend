@@ -1,9 +1,14 @@
 import { showToast } from "@lib/show-toast";
 import { authService } from "@services/auth/auth-service";
-import type { LoginData, RegisterData } from "@services/auth/auth-types";
+import type {
+  LoginData,
+  RegisterData,
+  ResetPasswordData,
+  VerifyResetCodeData
+} from "@services/auth/auth-types";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -36,6 +41,49 @@ export const useRegister = () => {
         description: "Registration successful! Please check your email to verify your account.",
         variant: "default"
       });
+    }
+  });
+};
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationFn: (data: Pick<LoginData, "email">) => authService.forgotPassword(data),
+    onSuccess: (data) => {
+      showToast({
+        title: "Success",
+        description: data.message,
+        variant: "default"
+      });
+    }
+  });
+};
+
+export const useVerifyResetCode = () => {
+  return useMutation({
+    mutationFn: (data: VerifyResetCodeData) => authService.verifyResetCode(data),
+    onSuccess: (data) => {
+      showToast({
+        title: "Success",
+        description: data.message,
+        variant: "default"
+      });
+    }
+  });
+};
+
+export const useResetPassword = () => {
+  const [_, setSearchParams] = useSearchParams();
+
+  return useMutation({
+    mutationFn: (data: ResetPasswordData) => authService.resetPassword(data),
+    onSuccess: (data) => {
+      showToast({
+        title: "Success",
+        description: data.message,
+        variant: "default"
+      });
+
+      setSearchParams({ tab: "login" });
     }
   });
 };

@@ -1,5 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
-import { Login, Register } from "@features/auth/components";
+import {
+  ForgotPassword,
+  Login,
+  Register,
+  ResetPassword,
+  VerifyResetCode
+} from "@features/auth/components";
 import { showToast } from "@lib/show-toast";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -7,32 +13,44 @@ import type { ToastData } from "@/types/index";
 
 export const AuthPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [tab, setTab] = useState("register");
 
-  useEffect(() => {
+  const [tab, setTab] = useState(() => {
     const tabParam = searchParams.get("tab");
-
-    if (tabParam === "register" || tabParam === "login") {
-      setTab(tabParam);
-    }
-  }, [searchParams]);
+    return tabParam === "login" || tabParam === "register" ? tabParam : "register";
+  });
+  const [resetPasswordStep, setResetPasswordStep] = useState<"email" | "otp" | "password">("email");
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetToken, setResetToken] = useState("");
 
   useEffect(() => {
     const status = searchParams.get("status");
+    if (!status || !afterVerifyAccStatus[status]) return;
 
-    if (status && afterVerifyAccStatus[status]) {
-      setSearchParams({ tab: status === "verified" ? "login" : "register" });
-      const id = setTimeout(() => {
-        showToast(afterVerifyAccStatus[status]);
-      }, 0);
+    const nextTab = status === "verified" ? "login" : "register";
+    setTab(nextTab);
+    setSearchParams({ tab: nextTab }, { replace: true });
 
-      return () => clearTimeout(id);
-    }
+    const id = setTimeout(() => {
+      showToast(afterVerifyAccStatus[status]);
+    }, 0);
+
+    return () => clearTimeout(id);
   }, [searchParams, setSearchParams]);
+
+  const isResetPassword = searchParams.get("resetPassword") === "true";
 
   const onHandleTabChange = (value: string) => {
     setTab(value);
-    setSearchParams({ tab: value });
+  };
+
+  const handleForgotPassword = (email: string) => {
+    setResetEmail(email);
+    setResetPasswordStep("otp");
+  };
+
+  const handleVerifyCode = (token: string) => {
+    setResetToken(token);
+    setResetPasswordStep("password");
   };
 
   return (
@@ -40,14 +58,30 @@ export const AuthPage = () => {
       <div className="w-full max-w-md">
         <Tabs value={tab} onValueChange={onHandleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="register">Register</TabsTrigger>
-            <TabsTrigger value="login">Login</TabsTrigger>
+            <TabsTrigger value="register" disabled={isResetPassword}>
+              Register
+            </TabsTrigger>
+            <TabsTrigger value="login" disabled={isResetPassword}>
+              Login
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="register">
             <Register />
           </TabsContent>
           <TabsContent value="login">
-            <Login />
+            {isResetPassword ? (
+              <>
+                {resetPasswordStep === "email" && (
+                  <ForgotPassword handleForgotPassword={handleForgotPassword} />
+                )}
+                {resetPasswordStep === "otp" && (
+                  <VerifyResetCode email={resetEmail} handleVerifyCode={handleVerifyCode} />
+                )}
+                {resetPasswordStep === "password" && <ResetPassword resetToken={resetToken} />}
+              </>
+            ) : (
+              <Login />
+            )}
           </TabsContent>
         </Tabs>
       </div>
