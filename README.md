@@ -99,6 +99,13 @@ Dashboard (Owner)
 - **Axios** - HTTP client
 - **Biome** - Code linting & formatting
 - **Commitlint** - Git commit validation
+- **React Hook Form** - Form state management
+- **Zod** - Schema validation
+- **TanStack Query (React Query)** - Server state management
+- **Sonner** - Toast notifications
+- **Recharts** - Chart visualization
+- **Dayjs** - Date manipulation
+- **Lucide React** - Icon library
 
 ---
 
