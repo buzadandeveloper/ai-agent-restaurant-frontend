@@ -5,7 +5,7 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from "@components/ui/chart";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { StatisticsAreaChartSkeleton } from "./statistics-area-chart-skeleton";
 
 interface StatisticsAreaChartProps<TData> {
@@ -69,6 +69,8 @@ export const StatisticsAreaChart = <TData extends { date: string }>({
                   });
                 }}
               />
+
+              <YAxis tickLine={false} axisLine={false} tickMargin={8} />
 
               <ChartTooltip
                 cursor={false}
