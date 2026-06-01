@@ -208,6 +208,11 @@ Navigate to `http://localhost:5173`
 
 ---
 
+## Architectural Overview
+
+![Architecture](/public/img.png)
+
+---
 
 ## 📖 For More Information
 
