@@ -16,6 +16,12 @@
 
 ---
 
+## Architectural Overview
+
+![Architecture](/public/img.png)
+
+---
+
 ## 🎯 What Is This?
 
 This is a **React + TypeScript admin dashboard** where restaurant owners can manage their business. It's part of a 3-part AI Restaurant system that automates order-taking through AI agents.
@@ -205,12 +211,6 @@ Navigate to `http://localhost:5173`
 5. AI understands & confirms order
 6. Order appears in backend & dashboard
 7. Customer pays bill
-
----
-
-## Architectural Overview
-
-![Architecture](/public/img.png)
 
 ---
 
